@@ -117,6 +117,6 @@ Tìm id của airflow-scheduler bằng câu lệnh ```sh sudo docker ps```
 Sau đó thực hiện câu lệnh ```sh sudo docker exec -it CONTAINER_ID /bin/bash``` để truy cập vào bên trong container Docker đang chạy.  
 ![Kích hoạt container dựa trên ID](image/494363313_1202539374847466_757003140205749504_n.png)   
 Sau khi truy cập vào được Container của Docker đang chạy ta sẽ tìm file logs của taks mà ta muốn xem
-![Hiển thị logs trên terminal](image/494814387_690953526641021_634221002457088349_n.png)   
-
+![Hiển thị logs trên terminal](image/494814387_690953526641021_634221002457088349_n.png)    
+Dựa trên logs ta có thể thấy trong vòng 7 ngày gần nhất chỉ có 1 email là có từ khóa **important** trong chủ đề (do trong phần dag.py ta đã thiết lập lọc email theo chủ đề).
 
