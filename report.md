@@ -114,8 +114,9 @@ Tại đây sẽ hiển thị ra số task đã chạy.
 ![Giao diện xem logs của các task](image/494817737_663478773203715_4499215736304721946_n.png)   
 Hoặc ta có thể xem log từ terminal bằng cách sau:  
 Tìm id của airflow-scheduler bằng câu lệnh ```sh sudo docker ps```  
-Sau đó thực hiện câu lệnh ```sh sudo docker exec -it CONTAINER_ID /bin/bash```
-
-
+Sau đó thực hiện câu lệnh ```sh sudo docker exec -it CONTAINER_ID /bin/bash``` để truy cập vào bên trong container Docker đang chạy.  
+![Kích hoạt container dựa trên ID](image/494363313_1202539374847466_757003140205749504_n.png)   
+Sau khi truy cập vào được Container của Docker đang chạy ta sẽ tìm file logs của taks mà ta muốn xem
+![Hiển thị logs trên terminal](image/494814387_690953526641021_634221002457088349_n.png)   
 
 
