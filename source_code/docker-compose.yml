@@ -1,0 +1,69 @@
+version: '3'  # Xác định phiên bản của cú pháp Docker Compose
+services:  # Định nghĩa các container (dịch vụ) sẽ được tạo
+  postgres:  #Dịch vụ postgres
+    image: postgres:13  # Dùng phiên bản 13
+    environment:  # Thiết lập các biến môi trường cho postgres. Đây là nơi lưu trữ thông tin như DAGs, Execution history,...
+      POSTGRES_USER: airflow  # tên đăng nhập
+      POSTGRES_PASSWORD: airflow  # và mật khẩu
+      POSTGRES_DB: airflow  # Tạo database
+  airflow-webserver:  # Truy cập vào giao diện web quản lý DAGs
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ~/gmail_creds:/opt/airflow/creds
+    restart: always
+    image: apache/airflow:2.7.2 # Dùng bản apache/airflow: 2.7.2. Đây là một bộ đóng gói sẵn phần mềm và môi trường cần thiết để chạy chương trình
+    environment: # Thiết lập các biến kết nối tới database
+      AIRFLOW__WEBSERVER__SECRET_KEY: 0rd5UvX3WnCgiF9Sc8kcRQ==
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow # Dùng driver psycopg2, tài khoản airflow, hostname postgres, database airflow.
+      _AIRFLOW_WWW_USER_USERNAME: airflow
+      _AIRFLOW_WWW_USER_PASSWORD: airflow
+      GMAIL_CLIENT_ID: your_client_id
+      GMAIL_CLIENT_SECRET: your_client_secret
+      GMAIL_REFRESH_TOKEN: your_refresh_token
+      GMAIL_TOKEN: your_token
+    ports: # Cài đặt port
+      - "8080:8080" # Map cổng trong container 8080 ra cổng máy chủ 8080
+    depends_on:
+      # - postgres  # Phải khởi động postgres trước
+      - airflow-scheduler
+    command: webserver
+  airflow-scheduler:  # Lên lịch chạy DAGs
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ~/gmail_creds:/opt/airflow/creds
+    image: apache/airflow:2.7.2
+    restart: always
+    command: scheduler
+    environment:
+      AIRFLOW__WEBSERVER__SECRET_KEY: 0rd5UvX3WnCgiF9Sc8kcRQ==
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      GMAIL_CLIENT_ID: your_client_id
+      GMAIL_CLIENT_SECRET: your_client_secret
+      GMAIL_REFRESH_TOKEN: your_refresh_token
+      GMAIL_TOKEN: your_token
+    depends_on:
+      - postgres
+  airflow-worker: 
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: apache/airflow:2.7.2
+    restart: always
+    command: worker
+    environment:
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      AIRFLOW__WEBSERVER__SECRET_KEY: 0rd5UvX3WnCgiF9Sc8kcRQ==  
+      GMAIL_CLIENT_ID: your_client_id
+      GMAIL_CLIENT_SECRET: your_client_secret
+      GMAIL_REFRESH_TOKEN: your_refresh_token
+      GMAIL_TOKEN: your_token
+    depends_on:
+      - postgres
