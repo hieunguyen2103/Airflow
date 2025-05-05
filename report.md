@@ -94,6 +94,10 @@ sudo docker-compose run --rm airflow-webserver airflow users create \
 sudo docker-compose up -d
 ```  
 
-Hoặc chạy file start.sh bằng câu lệnh sau: ```sh sudo ./start.sh```
+Hoặc chạy file start.sh bằng câu lệnh sau: ```sh sudo ./start.sh```  
+
+Giao diện sau khi chạy thành công Airflow trên Docker:  
+![Giao diện sau khi chạy thành công Airflow trên Docker](image/494857399_1351386069448951_548705283012746326_n.png)
+
 
 
