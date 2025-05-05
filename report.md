@@ -74,8 +74,13 @@ khác.
 ## 6. Xây dựng workflow kiểm tra mail tự động dựa trên Airflow
 1. Cài đặt Airflow trên Docker  
 Chạy lần lượt các câu lệnh sau:  
-sh `sudo docker volume prune -f`  
-sh `sudo docker-compose run --rm airflow-webserver airflow db init`  
+```sh 
+sudo docker volume prune -f
+```  
+```sh
+sudo docker-compose run --rm airflow-webserver airflow db init
+```  
+
 ```sh
 sudo docker-compose run --rm airflow-webserver airflow users create \
   --username admin \
@@ -85,8 +90,10 @@ sudo docker-compose run --rm airflow-webserver airflow users create \
   --role Admin \
   --email hsku2009@gmail.com
 ```
-sh `sudo docker-compose up -d`  
-ư
-Hoặc chạy file start.sh bằng câu lệnh sau: sh `sudo ./start.sh`
+```sh 
+sudo docker-compose up -d
+```  
+
+Hoặc chạy file start.sh bằng câu lệnh sau: ```sh sudo ./start.sh```
 
 
