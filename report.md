@@ -104,7 +104,7 @@ Ta thấy phần webserver, scheduler có trạng thái là ***running** chứng
 Khi webserver đã chạy thành công ta có thể vào giao diện web bằng cách truy cập `localhost:8080`. Tài khoản để đăng nhập chính là **username** và **password** mà ta đã tạo ở bên trên (trong trường hợp này cả **username** và **password** đều là **admin**).  
 ![Giao diện đăng nhập thành công vào airflow webserver](image/494817053_1043080487743964_6086730996055500217_n.png)   
 
-Tại đây ta thấy có 1 DAG là **check_gmail_dag** chính là DAG mà ta đã tạo trong folder **dags/dag.py**. DAG này sẽ được kích hoạt vào ngày 5/5/2025, mỗi giờ chạy 1 lần. Để chạy DAG này thủ công ta sẽ nhấn vào biểu tượng tam giác.  
+Tại đây ta thấy có 1 DAG là **check_gmail_dag** chính là DAG mà ta đã tạo trong folder **dags/dag.py**. DAG này sẽ được kích hoạt vào ngày 5/5/2025, mỗi giờ chạy 1 lần. Khi chạy, sẽ check mail trong vòng 7 ngày gấn nhất và chỉ trả về những mail nào có từ khóa **important** trong chủ đề. Để chạy DAG này thủ công ta sẽ nhấn vào biểu tượng tam giác.  
 ![Giao diện đang chạy dag](image/494859683_1234181848124780_8712300857742961927_n.png)   
 Tại đây sẽ hiển thị trạng thái các task như là Queue, Running, Success.  
 ![Giao diện chạy dag thành công](image/494357949_579024651348105_3808912682778765433_n.png)   
