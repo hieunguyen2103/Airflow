@@ -88,7 +88,7 @@ sudo docker-compose run --rm airflow-webserver airflow users create \
   --firstname Hieu \
   --lastname Nguyen \
   --role Admin \
-  --email hsku2009@gmail.com
+  --email nick_gmail9@gmail.com
 ```
 ```sh 
 sudo docker-compose up -d
@@ -97,7 +97,18 @@ sudo docker-compose up -d
 Hoặc chạy file start.sh bằng câu lệnh sau: ```sh sudo ./start.sh```  
 
 Giao diện sau khi chạy thành công Airflow trên Docker:  
-![Giao diện sau khi chạy thành công Airflow trên Docker](image/494857399_1351386069448951_548705283012746326_n.png)
+![Giao diện sau khi chạy thành công Airflow trên Docker](image/494857399_1351386069448951_548705283012746326_n.png)  
+
+Ta thấy phần webserver, scheduler có trạng thái là ***running** chứng tỏ Airflow đã chạy thành công.  
+
+Khi webserver đã chạy thành công ta có thể vào giao diện web bằng cách truy cập `localhost:8080`. Tài khoản để đăng nhập chính là **username** và **password** mà ta đã tạo ở bên trên (trong trường hợp này cả uesrname và password đều là admin).  
+![Giao diện đăng nhập thành công vào airflow webserver](image/494817053_1043080487743964_6086730996055500217_n.png)   
+
+Tại đây ta thấy có 1 DAG là **check_gmail_dag** chính là DAG mà ta đã tạo trong folder **dags/dag.py**. Để chạy DAG này ta sẽ nhấn vào biểu tượng tam giác.  
+![Giao diện đang chạy dag](image/494859683_1234181848124780_8712300857742961927_n.png)   
+Tại đây sẽ hiển thị trạng thái các task như là Queue, Running, Success.  
+![Giao diện chạy dag thành công](image/494357949_579024651348105_3808912682778765433_n.png)  
+
 
 
 
