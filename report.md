@@ -101,13 +101,20 @@ Giao diện sau khi chạy thành công Airflow trên Docker:
 
 Ta thấy phần webserver, scheduler có trạng thái là ***running** chứng tỏ Airflow đã chạy thành công.  
 
-Khi webserver đã chạy thành công ta có thể vào giao diện web bằng cách truy cập `localhost:8080`. Tài khoản để đăng nhập chính là **username** và **password** mà ta đã tạo ở bên trên (trong trường hợp này cả uesrname và password đều là admin).  
+Khi webserver đã chạy thành công ta có thể vào giao diện web bằng cách truy cập `localhost:8080`. Tài khoản để đăng nhập chính là **username** và **password** mà ta đã tạo ở bên trên (trong trường hợp này cả **username** và **password** đều là **admin**).  
 ![Giao diện đăng nhập thành công vào airflow webserver](image/494817053_1043080487743964_6086730996055500217_n.png)   
 
-Tại đây ta thấy có 1 DAG là **check_gmail_dag** chính là DAG mà ta đã tạo trong folder **dags/dag.py**. Để chạy DAG này ta sẽ nhấn vào biểu tượng tam giác.  
+Tại đây ta thấy có 1 DAG là **check_gmail_dag** chính là DAG mà ta đã tạo trong folder **dags/dag.py**. DAG này sẽ được kích hoạt vào ngày 5/5/2025, mỗi giờ chạy 1 lần. Để chạy DAG này thủ công ta sẽ nhấn vào biểu tượng tam giác.  
 ![Giao diện đang chạy dag](image/494859683_1234181848124780_8712300857742961927_n.png)   
 Tại đây sẽ hiển thị trạng thái các task như là Queue, Running, Success.  
-![Giao diện chạy dag thành công](image/494357949_579024651348105_3808912682778765433_n.png)  
+![Giao diện chạy dag thành công](image/494357949_579024651348105_3808912682778765433_n.png)   
+Tại đây sẽ hiển thị ra số task đã chạy.  
+![Giao diện hiển thị các task đã chạy](image/494815972_1376083853543857_5909119075039794660_n.png)  
+Để xem logs của các task, ta chọn task muốn xem rồi chọn Logs như trên hình:  
+![Giao diện xem logs của các task](image/494817737_663478773203715_4499215736304721946_n.png)   
+Hoặc ta có thể xem log từ terminal bằng cách sau:  
+Tìm id của airflow-scheduler bằng câu lệnh ```sh sudo docker ps```  
+Sau đó thực hiện câu lệnh ```sh sudo docker exec -it *id_airflow_scheduler* /bin/bash ```
 
 
 
